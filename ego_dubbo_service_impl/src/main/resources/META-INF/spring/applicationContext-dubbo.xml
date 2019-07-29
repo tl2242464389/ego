@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context.xsd
+		http://code.alibabatech.com/schema/dubbo
+		http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+    <!-- 给当前provider起名，用于客户端工具查看服务是否启动成功 -->
+    <dubbo:application name="dubbo-provider"/>
+    <!--
+        dubbo的注册中心
+        address：dubbo的注册中心地址
+        protocol：使用的注册中心（Zookeeper，redis，Multicast...）
+    -->
+    <dubbo:registry address="192.168.76.133:2181" protocol="zookeeper"/>
+    <!-- provider对外提供服务的协议与端口 -->
+    <dubbo:protocol name="dubbo" port="20880"/>
+    <!-- 向注册中心注册服务接口，引用具体实现类 -->
+</beans>
