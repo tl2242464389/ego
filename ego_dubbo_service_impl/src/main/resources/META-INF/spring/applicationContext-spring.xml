@@ -32,7 +32,7 @@
     </bean>
     <!-- 扫描器 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-    	<property name="basePackage" value="com.test.dubbo.mapper"/>
+    	<property name="basePackage" value="com.ego.dubbo.mapper"/>
     	<property name="sqlSessionFactoryBeanName" value="factory"/>
     </bean>
     <!-- 事务管理器 -->

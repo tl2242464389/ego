@@ -1,4 +1,4 @@
-package com.ego.mapper;
+package com.ego.dubbo.mapper;
 
 import com.ego.pojo.TbItemParamItem;
 import com.ego.pojo.TbItemParamItemExample;

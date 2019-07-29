@@ -13,7 +13,7 @@
         address：dubbo的注册中心地址
         protocol：使用的注册中心（Zookeeper，redis，Multicast...）
     -->
-    <dubbo:registry address="192.168.76.133:2181" protocol="zookeeper"/>
+    <dubbo:registry address="192.168.76.141:2181" protocol="zookeeper"/>
     <!-- consumer中使用dubbo注解驱动功能，不会与SpringAOP产生冲突 -->
     <dubbo:annotation package="com.ego.service"/>
 </beans>

@@ -30,6 +30,7 @@
         <dubbo-version>2.5.3</dubbo-version>
         <zkClient-version>0.10</zkClient-version>
         <tomcat-version>2.2</tomcat-version>
+        <aopalliance-version>1.0</aopalliance-version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -67,6 +68,11 @@
                 <groupId>org.aspectj</groupId>
                 <artifactId>aspectjweaver</artifactId>
                 <version>${aspectjweaver-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>aopalliance</groupId>
+                <artifactId>aopalliance</artifactId>
+                <version>${aopalliance-version}</version>
             </dependency>
 
             <!-- mybatis -->
