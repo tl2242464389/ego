@@ -6,10 +6,14 @@
 
   <groupId>com.ego</groupId>
   <artifactId>ego_parent</artifactId>
-  <packaging>pom</packaging>
   <version>1.0-SNAPSHOT</version>
   <modules>
     <module>../ego_pojo</module>
+    <module>../ego_dubbo_service</module>
+    <module>../ego_dubbo_service_impl</module>
+    <module>../ego_commons</module>
+      <module>../ego_manage</module>
   </modules>
+  <packaging>pom</packaging>
 
 </project>
