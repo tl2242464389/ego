@@ -31,6 +31,7 @@
         <zkClient-version>0.10</zkClient-version>
         <tomcat-version>2.2</tomcat-version>
         <aopalliance-version>1.0</aopalliance-version>
+        <pagehelper-version>4.1.6</pagehelper-version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -86,6 +87,12 @@
                 <groupId>org.mybatis</groupId>
                 <artifactId>mybatis-spring</artifactId>
                 <version>${mybatis-spring-version}</version>
+            </dependency>
+            <!-- mybatis分页插件 -->
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper</artifactId>
+                <version>${pagehelper-version}</version>
             </dependency>
 
             <!-- log4j 日志 -->

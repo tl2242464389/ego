@@ -1,0 +1,40 @@
+package com.ego.dubbo.service.impl;
+
+import com.commons.pojo.EasyUIDataGrid;
+import com.ego.dubbo.mapper.TbItemMapper;
+import com.ego.dubbo.service.TbitemDubboService;
+import com.ego.pojo.TbItem;
+import com.ego.pojo.TbItemExample;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+
+import javax.annotation.Resource;
+import java.util.List;
+
+/**
+ * @Description:
+ * @Author: tl
+ * @Date: 2019-07-30 10:45
+ * @Version: 1.0
+ */
+public class TbitemDubboServiceImpl implements TbitemDubboService {
+    @Resource
+    private TbItemMapper tbItemMapper;
+
+    @Override
+    public EasyUIDataGrid show(int page, int rows) {
+        // 设置分页条件，page -- 第几页，rows -- 多少条数据
+        PageHelper.startPage(page, rows);
+
+        List<TbItem> tbItems = tbItemMapper.selectByExample(new TbItemExample());
+
+        // 使用分页插件将返回的集合解析成 EasyUI 能够解析的 EasyUIDataGrid 对象
+        PageInfo pageInfo = new PageInfo(tbItems);
+
+        EasyUIDataGrid easyUIDataGrid = new EasyUIDataGrid();
+        easyUIDataGrid.setRows(pageInfo.getList());
+        easyUIDataGrid.setTotal(pageInfo.getTotal());
+
+        return easyUIDataGrid;
+    }
+}
