@@ -9,6 +9,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -37,4 +38,23 @@ public class TbitemDubboServiceImpl implements TbitemDubboService {
 
         return easyUIDataGrid;
     }
+
+    @Override
+    public int updItemStatus(String ids, byte status) {
+        String[] idStrs = ids.split(",");
+        List<Long> list = new ArrayList<>();
+        for (String id : idStrs){
+            list.add(Long.parseLong(id));
+        }
+        TbItem tbItem = new TbItem();
+        tbItem.setStatus(status);
+
+        TbItemExample tbItemExample = new TbItemExample();
+        tbItemExample.createCriteria().andIdIn(list);
+
+        int index = tbItemMapper.updateByExampleSelective(tbItem, tbItemExample);
+        System.out.println(index);
+        return index;
+    }
+
 }

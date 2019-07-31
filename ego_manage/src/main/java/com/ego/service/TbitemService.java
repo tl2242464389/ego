@@ -1,6 +1,7 @@
 package com.ego.service;
 
 import com.commons.pojo.EasyUIDataGrid;
+import com.ego.pojo.TbItem;
 
 /**
  * @Description:
@@ -17,4 +18,13 @@ public interface TbitemService {
      * @return: com.commons.pojo.EasyUIDataGrid
      */
     EasyUIDataGrid show(int page, int rows);
+
+    /**
+     * @description: 更新商品状态
+     * @param: ids
+     * @param: status
+     * @Date: 2019-07-31 10:57
+     * @return: int
+     */
+    int updItemStatus(String ids, byte status);
 }

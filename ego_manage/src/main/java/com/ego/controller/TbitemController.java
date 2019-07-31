@@ -1,6 +1,7 @@
 package com.ego.controller;
 
 import com.commons.pojo.EasyUIDataGrid;
+import com.commons.pojo.EgoResult;
 import com.ego.service.TbitemService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -37,4 +38,36 @@ public class TbitemController {
         return tbitemServiceImpl.show(page, rows);
     }
 
+    @ResponseBody
+    @RequestMapping("/rest/item/delete")
+    public EgoResult delete(String ids){
+        EgoResult er = new EgoResult();
+        int index = tbitemServiceImpl.updItemStatus(ids, (byte) 3);
+        if(index >= 1){
+            er.setStatus(200);
+        }
+        return er;
+    }
+
+    @ResponseBody
+    @RequestMapping("/rest/item/instock")
+    public EgoResult instock(String ids){
+        EgoResult er = new EgoResult();
+        int index = tbitemServiceImpl.updItemStatus(ids, (byte) 2);
+        if(index >= 1){
+            er.setStatus(200);
+        }
+        return er;
+    }
+
+    @ResponseBody
+    @RequestMapping("/rest/item/reshelf")
+    public EgoResult reshelf(String ids){
+        EgoResult er = new EgoResult();
+        int index = tbitemServiceImpl.updItemStatus(ids, (byte) 1);
+        if(index >= 1){
+            er.setStatus(200);
+        }
+        return er;
+    }
 }
