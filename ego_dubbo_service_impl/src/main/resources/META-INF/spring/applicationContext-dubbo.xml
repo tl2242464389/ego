@@ -17,6 +17,13 @@
     <!-- provider对外提供服务的协议与端口 -->
     <dubbo:protocol name="dubbo" port="20880"/>
     <!-- 向注册中心注册服务接口，引用具体实现类 -->
-    <bean id="tbitemDubboServiceImpl" class="com.ego.dubbo.service.impl.TbitemDubboServiceImpl"/>
-    <dubbo:service interface="com.ego.dubbo.service.TbitemDubboService" ref="tbitemDubboServiceImpl"/>
+    <!-- 商品信息 -->
+    <bean id="tbItemDubboServiceImpl" class="com.ego.dubbo.service.impl.TbitemDubboServiceImpl"/>
+    <dubbo:service interface="com.ego.dubbo.service.TbitemDubboService" ref="tbItemDubboServiceImpl"/>
+    <!-- 商品类目信息 -->
+    <bean id="tbItemCatDubboServiceImpl" class="com.ego.dubbo.service.impl.TbItemCatDubboServiceImpl"/>
+    <dubbo:service interface="com.ego.dubbo.service.TbItemCatDubboService" ref="tbItemCatDubboServiceImpl"/>
+    <!-- 商品规格信息 -->
+    <bean id="tbItemParamDubboServiceImpl" class="com.ego.dubbo.service.impl.TbItemParamDubboServiceImpl"/>
+    <dubbo:service interface="com.ego.dubbo.service.TbItemParamDubboService" ref="tbItemParamDubboServiceImpl"/>
 </beans>

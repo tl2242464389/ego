@@ -2,6 +2,7 @@ package com.ego.controller;
 
 import com.commons.pojo.EasyUIDataGrid;
 import com.commons.pojo.EgoResult;
+import com.ego.pojo.TbItem;
 import com.ego.service.TbitemService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -67,6 +68,23 @@ public class TbitemController {
         int index = tbitemServiceImpl.updItemStatus(ids, (byte) 1);
         if(index >= 1){
             er.setStatus(200);
+        }
+        return er;
+    }
+
+    @ResponseBody
+    @RequestMapping("/item/save")
+    public EgoResult save(TbItem tbItem, String desc){
+        EgoResult er = new EgoResult();
+        int index = 0;
+        try {
+            index = tbitemServiceImpl.insTbItemAndDesc(tbItem, desc);
+            if(index == 1){
+                er.setStatus(200);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            er.setData(e.getMessage());
         }
         return er;
     }

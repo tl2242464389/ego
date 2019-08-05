@@ -27,4 +27,13 @@ public interface TbitemService {
      * @return: int
      */
     int updItemStatus(String ids, byte status);
+
+    /**
+     * @description: 新增商品，同时新增商品描述
+     * @param: tbItem
+     * @param: desc
+     * @Date: 2019-08-03 11:02
+     * @return: int
+     */
+    int insTbItemAndDesc(TbItem tbItem, String desc) throws Exception;
 }

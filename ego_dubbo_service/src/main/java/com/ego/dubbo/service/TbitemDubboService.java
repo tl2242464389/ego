@@ -2,6 +2,7 @@ package com.ego.dubbo.service;
 
 import com.commons.pojo.EasyUIDataGrid;
 import com.ego.pojo.TbItem;
+import com.ego.pojo.TbItemDesc;
 
 /**
  * @Description: 商品服务接口
@@ -27,4 +28,13 @@ public interface TbitemDubboService {
      * @return: int
      */
     int updItemStatus(String ids, byte status);
+
+    /**
+     * @description: 新增商品，同时新增商品描述
+     * @param: tbItem
+     * @param: desc
+     * @Date: 2019-08-03 10:55
+     * @return: int
+     */
+    int insItemAndDesc(TbItem tbItem, TbItemDesc desc) throws Exception;
 }

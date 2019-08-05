@@ -1,9 +1,11 @@
 package com.ego.dubbo.service.impl;
 
 import com.commons.pojo.EasyUIDataGrid;
+import com.ego.dubbo.mapper.TbItemDescMapper;
 import com.ego.dubbo.mapper.TbItemMapper;
 import com.ego.dubbo.service.TbitemDubboService;
 import com.ego.pojo.TbItem;
+import com.ego.pojo.TbItemDesc;
 import com.ego.pojo.TbItemExample;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -21,6 +23,8 @@ import java.util.List;
 public class TbitemDubboServiceImpl implements TbitemDubboService {
     @Resource
     private TbItemMapper tbItemMapper;
+    @Resource
+    private TbItemDescMapper tbItemDescMapper;
 
     @Override
     public EasyUIDataGrid show(int page, int rows) {
@@ -55,6 +59,22 @@ public class TbitemDubboServiceImpl implements TbitemDubboService {
         int index = tbItemMapper.updateByExampleSelective(tbItem, tbItemExample);
         System.out.println(index);
         return index;
+    }
+
+    @Override
+    public int insItemAndDesc(TbItem tbItem, TbItemDesc desc) throws Exception {
+        int index =0;
+        try {
+            index += tbItemMapper.insert(tbItem);
+            index += tbItemDescMapper.insert(desc);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if(index == 2){
+            return 1;
+        }else{
+            throw new Exception("商品新增失败，请联系管理员");
+        }
     }
 
 }
