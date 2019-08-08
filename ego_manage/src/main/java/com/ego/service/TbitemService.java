@@ -36,4 +36,14 @@ public interface TbitemService {
      * @return: int
      */
     int insTbItemAndDesc(TbItem tbItem, String desc) throws Exception;
+
+    /**
+     * @description: 新增商品，同时新增商品描述、商品规格
+     * @param: tbItem
+     * @param: desc
+     * @param: itemParams
+     * @Date: 2019-08-07 16:12
+     * @return: int
+     */
+    int insTbItemAndDesc(TbItem tbItem, String desc, String itemParams) throws Exception;
 }

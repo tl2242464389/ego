@@ -3,10 +3,12 @@ package com.ego.dubbo.service.impl;
 import com.commons.pojo.EasyUIDataGrid;
 import com.ego.dubbo.mapper.TbItemDescMapper;
 import com.ego.dubbo.mapper.TbItemMapper;
+import com.ego.dubbo.mapper.TbItemParamItemMapper;
 import com.ego.dubbo.service.TbitemDubboService;
 import com.ego.pojo.TbItem;
 import com.ego.pojo.TbItemDesc;
 import com.ego.pojo.TbItemExample;
+import com.ego.pojo.TbItemParamItem;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
@@ -25,6 +27,8 @@ public class TbitemDubboServiceImpl implements TbitemDubboService {
     private TbItemMapper tbItemMapper;
     @Resource
     private TbItemDescMapper tbItemDescMapper;
+    @Resource
+    private TbItemParamItemMapper tbItemParamItemMapper;
 
     @Override
     public EasyUIDataGrid show(int page, int rows) {
@@ -71,6 +75,23 @@ public class TbitemDubboServiceImpl implements TbitemDubboService {
             e.printStackTrace();
         }
         if(index == 2){
+            return 1;
+        }else{
+            throw new Exception("商品新增失败，请联系管理员");
+        }
+    }
+
+    @Override
+    public int insItemAndDesc(TbItem tbItem, TbItemDesc desc, TbItemParamItem paramItem) throws Exception {
+        int index =0;
+        try {
+            index += tbItemMapper.insert(tbItem);
+            index += tbItemDescMapper.insert(desc);
+            index += tbItemParamItemMapper.insertSelective(paramItem);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if(index == 3){
             return 1;
         }else{
             throw new Exception("商品新增失败，请联系管理员");

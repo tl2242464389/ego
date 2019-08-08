@@ -74,11 +74,11 @@ public class TbitemController {
 
     @ResponseBody
     @RequestMapping("/item/save")
-    public EgoResult save(TbItem tbItem, String desc){
+    public EgoResult save(TbItem tbItem, String desc, String itemParams){
         EgoResult er = new EgoResult();
         int index = 0;
         try {
-            index = tbitemServiceImpl.insTbItemAndDesc(tbItem, desc);
+            index = tbitemServiceImpl.insTbItemAndDesc(tbItem, desc, itemParams);
             if(index == 1){
                 er.setStatus(200);
             }

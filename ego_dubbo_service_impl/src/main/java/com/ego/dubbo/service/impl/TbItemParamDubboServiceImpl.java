@@ -46,11 +46,47 @@ public class TbItemParamDubboServiceImpl implements TbItemParamDubboService {
             child.setCreated(param.getCreated());
             child.setUpdated(param.getUpdated());
             child.setParamData(param.getParamData());
-            child.setItemCatName(tbItemCatMapper.selectByPrimaryKey(param.getId()).getName());
+            child.setItemCatName(tbItemCatMapper.selectByPrimaryKey(param.getItemCatId()).getName());
             listChild.add(child);
         }
 
         er.setRows(listChild);
         return er;
+    }
+
+    @Override
+    public int delParamById(List<Long> ids) throws Exception {
+        TbItemParamExample example = new TbItemParamExample();
+        example.createCriteria().andIdIn(ids);
+
+        int index = tbItemParamMapper.deleteByExample(example);
+        System.err.println(index);
+        if(ids.size() == index){
+            return 1;
+        }else{
+            throw new Exception("删除失败，原因：数据可能已被删除 " + ids.size() + ": " + index);
+        }
+    }
+
+    @Override
+    public TbItemParam selByCatId(long catId) {
+        TbItemParamExample example = new TbItemParamExample();
+        example.createCriteria().andItemCatIdEqualTo(catId);
+        List<TbItemParam> tbItemParams = tbItemParamMapper.selectByExampleWithBLOBs(example);
+        System.err.println(tbItemParams.size());
+        if(null != tbItemParams && 0 != tbItemParams.size()){
+            return tbItemParams.get(0);
+        }
+        return null;
+    }
+
+    @Override
+    public int saveTbItemParam(TbItemParam tbItemParam) throws Exception {
+        int index = tbItemParamMapper.insertSelective(tbItemParam);
+        if(1 == index){
+            return 1;
+        }else{
+            throw new Exception("新增失败");
+        }
     }
 }

@@ -23,7 +23,7 @@ public class PicController {
 
     @ResponseBody
     @RequestMapping("/pic/upload")
-    public Map<String, Object> upload(MultipartFile uploadFile){
+    public Map<String, Object> upload(MultipartFile uploadFile) {
         return picServiceImpl.upload(uploadFile);
     }
 
