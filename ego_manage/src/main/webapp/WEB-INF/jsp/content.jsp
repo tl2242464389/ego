@@ -96,10 +96,10 @@ var contentListToolbar = [{
     	    	var params = {"ids":ids};
             	$.post("/content/delete",params, function(data){
         			if(data.status == 200){
-        				$.messager.alert('提示','删除内容成功!',undefined,function(){
-        					$("#contentList").datagrid("reload");
-        				});
-        			}
+
+        			}$.messager.alert('提示','删除内容成功!',undefined,function(){
+                        $("#contentList").datagrid("reload");
+                    });
         		});
     	    }
     	});

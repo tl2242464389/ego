@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://code.alibabatech.com/schema/dubbo
+		http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <!-- 给当前provider起名，用于客户端工具查看服务是否启动成功 -->
+    <dubbo:application name="dubbo-consumer-item"/>
+
+    <!--
+        dubbo的注册中心
+        address：dubbo的注册中心地址
+        protocol：使用的注册中心（Zookeeper，redis，Multicast...）
+    -->
+    <dubbo:registry address="192.168.76.141:2181" protocol="zookeeper"/>
+
+    <!-- consumer中使用dubbo注解驱动功能，不会与SpringAOP产生冲突 -->
+    <dubbo:annotation package="com.ego.service.impl"/>
+
+</beans>
