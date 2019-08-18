@@ -4,6 +4,7 @@ import com.commons.pojo.EasyUIDataGrid;
 import com.ego.pojo.TbContent;
 
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -39,4 +40,21 @@ public interface TbContentDubboService {
      * @return: int
      */
     int delTbContent(List<Long> ids);
+
+    /**
+     * @description: 返回前台大广告
+     * @param: size
+     * @param: sort
+     * @Date: 2019-08-17 10:25
+     * @return: java.util.List<com.ego.pojo.TbContent>
+     */
+    List<TbContent> showBigPic(int size, boolean sort);
+
+    /**
+     * @description: 保存商品内容
+     * @param: tbContent
+     * @Date: 2019-08-18 10:21
+     * @return: int
+     */
+    int saveTbConent(TbContent tbContent);
 }

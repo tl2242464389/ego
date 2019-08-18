@@ -37,4 +37,12 @@ public interface TbContentService {
      * @return: com.commons.pojo.EgoResult
      */
     EgoResult delTbContent(String ids);
+
+    /**
+     * @description: 保存商品内容
+     * @param: tbContent
+     * @Date: 2019-08-18 10:22
+     * @return: com.commons.pojo.EgoResult
+     */
+    EgoResult saveTbContent(TbContent tbContent);
 }

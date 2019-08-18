@@ -39,4 +39,11 @@ public class TbContentController {
     public EgoResult delTbContent(String ids){
         return tbContentServiceImpl.delTbContent(ids);
     }
+
+    @ResponseBody
+    @RequestMapping("/content/save")
+    public EgoResult saveTbContent(TbContent tbContent){
+        System.out.println(tbContent);
+        return tbContentServiceImpl.saveTbContent(tbContent);
+    }
 }

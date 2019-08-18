@@ -10,6 +10,7 @@ import com.github.pagehelper.PageInfo;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Description: 商品内容管理
@@ -46,5 +47,25 @@ public class TbContentDubboServiceImpl implements TbContentDubboService {
     @Override
     public int delTbContent(List<Long> ids) {
         return tbContentMapper.delTbContent(ids);
+    }
+
+    @Override
+    public List<TbContent> showBigPic(int size, boolean sort) {
+        TbContentExample example = new TbContentExample();
+        if(0 != size){
+            PageHelper.startPage(1, size);
+        }
+        if(sort){
+            example.setOrderByClause("updated desc");
+        }
+        List<TbContent> tbContents = tbContentMapper.selectByExampleWithBLOBs(example);
+        PageInfo<TbContent> info = new PageInfo<>(tbContents);
+        System.out.println(info.getList());
+        return info.getList();
+    }
+
+    @Override
+    public int saveTbConent(TbContent tbContent) {
+        return tbContentMapper.insertSelective(tbContent);
     }
 }
