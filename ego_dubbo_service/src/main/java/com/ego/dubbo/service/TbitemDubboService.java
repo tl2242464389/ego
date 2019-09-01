@@ -5,6 +5,8 @@ import com.ego.pojo.TbItem;
 import com.ego.pojo.TbItemDesc;
 import com.ego.pojo.TbItemParamItem;
 
+import java.util.List;
+
 /**
  * @Description: 商品服务接口
  * @Author: tl
@@ -48,4 +50,20 @@ public interface TbitemDubboService {
      * @return: int
      */
     int insItemAndDesc(TbItem tbItem, TbItemDesc desc, TbItemParamItem paramItem) throws Exception;
+
+    /**
+     * @description: 根据状态查询商品信息
+     * @param: status
+     * @Date: 2019-08-28 9:44
+     * @return: java.util.List<com.ego.pojo.TbItem>
+     */
+    List<TbItem> selAll(byte status);
+
+    /**
+     * @description: 通过ID查询商品描述
+     * @param: id
+     * @Date: 2019-08-28 9:50
+     * @return: com.ego.pojo.TbItemDesc
+     */
+    TbItemDesc selById(long id);
 }

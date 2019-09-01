@@ -2,19 +2,24 @@ package com.ego.service.impl;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.commons.pojo.EasyUIDataGrid;
+import com.commons.utils.HttpClientUtil;
 import com.commons.utils.IDUtils;
+import com.commons.utils.JsonUtils;
 import com.ego.dubbo.service.TbitemDubboService;
 import com.ego.pojo.TbItem;
 import com.ego.pojo.TbItemDesc;
 import com.ego.pojo.TbItemExample;
 import com.ego.pojo.TbItemParamItem;
 import com.ego.service.TbitemService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Description:
@@ -27,6 +32,8 @@ public class TbitemServiceImpl implements TbitemService{
 
     @Reference
     private TbitemDubboService tbitemDubboService;
+    @Value("${search.url}")
+    private String url;
 
     @Override
     public EasyUIDataGrid show(int page, int rows) {
@@ -71,6 +78,19 @@ public class TbitemServiceImpl implements TbitemService{
         }else{
             index = tbitemDubboService.insItemAndDesc(tbItem, tbItemDesc);
         }
+
+        // 开始同步solr数据，通过子线程同步，提升效率
+        final TbItem tbItemFinal = tbItem;
+        final String descFinal = desc;
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Map<String,Object> map = new HashMap<>();
+                map.put("tbItem", tbItemFinal);
+                map.put("desc", descFinal);
+                HttpClientUtil.doPostJson(url, JsonUtils.objectToJson(map));
+            }
+        }).start();
 
         if(index == 1){
             return 1;
