@@ -36,7 +36,7 @@
         <tomcat-version>2.2</tomcat-version>
         <aopalliance-version>1.0</aopalliance-version>
         <pagehelper-version>4.1.6</pagehelper-version>
-        <ftpClient-version>3.3</ftpClient-version>
+        <ftpClient-version>3.9.0</ftpClient-version>
         <jedis-version>2.8.1</jedis-version>
         <solrj-version>5.3.1</solrj-version>
         <httpclient-version>4.4.1</httpclient-version>
